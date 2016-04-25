@@ -1,0 +1,24 @@
+Package: PPInterpolator
+Type: Package
+Title: A projection pursuit interpolator algorithm, especially for the design
+    and analysis of computer experiments
+Version: 0.0.0
+Author: Chen Daijun
+Maintainer: Chen Daijun and Zhou Xing <chendaijun13@mails.ucas.ac.cn>
+Description: This package mainly implements the projection pursuit interpolator
+    algorithm which is a method for analysis for computer experiments. Furthermore,
+    this package is build under R 3.2.4. This package including some data and it can
+    only be run on Window platform nowadays.
+Imports:
+    np
+License: GPL-3
+LazyData: TRUE
+OS_type: windows
+URL: http://github.com/DavidDJChen/PPInterpolator
+RoxygenNote: 5.0.1
+Collate:
+    'estimate_parametric_function.R'
+    'PPI_CE_function.R'
+    'hello.R'
+    'non_parametric_function.R'
+    'ppr_soucecode.R'
