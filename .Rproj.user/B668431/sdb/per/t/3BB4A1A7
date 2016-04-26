@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#***************** projection pursuit regression ***********************#\n#******** Date: April 15th 2016  |  Author: Chen Daijun ****************#\n#******** Project: Projection Pursuit Regression in DACE ***************#\n#******** Part one: Basic Projection pursuit regression  ***************#\n#******** Version : 0.0.0 **********************************************#\n#'Functions build for estimating a given non-parametric model\n#'@include estimate_parametric_function.R\n#************** sub-function: estimate the parametric parts ************#\n#*** step 7: increasing terms to fit data from Computer Experiments ***#\n\n#---- PPR_CE: build a final PPR model for computer experiments --------#\n#----------------------------------------------------------------------#\n#'PPI_CE function is the main function of PPI algorithm, which input\n#'the response and design matrix, max terms of PPI model, and the non-\n#'parametric method(the default method is local linear regression), the\n#'convergence requirement of parameter part, and the required accuracy for\n#'the model.\n#'\n#' @export\nPPI_CE <- function(response, design_matrix, max_terms, method = \"ll\",\n                   epslon, required_accuracy){\n  Y <- response\n  design_matrix <- design_matrix\n  epslon <- epslon\n  max_terms <- max_terms\n  accuracy <- required_accuracy\n  res <- Y # add the 1st term\n  dir_old <- matrix(runif(ncol(design_matrix)), ncol = 1)\n  direction <- projection_dir_final(res, design_matrix, dir_old, epslon)\n  S <- S(dir_old, res, design_matrix)\n  res_pred <- predict(S, # the np_model is fixed\n                      newdata = as.data.frame(design_matrix %*% direction))\n  model_list <- list()\n  model_term <- 1 # the number of model terms\n  model_list[[1]] <- list(model = S, direction = direction)\n  while(inf_norm(res_pred, res) > accuracy ){\n    res <- Y - res_pred # add the 1st term\n    dir_old <- matrix(runif(ncol(design_matrix)), ncol = 1)\n    direction <- projection_dir_final(res, design_matrix, dir_old, epslon)\n    S <- S(dir_old, res, design_matrix)\n    res_pred <- predict(S, # the np_model is fixed\n                        newdata = as.data.frame(design_matrix %*% direction))\n    model_term <- model_term + 1\n    model_list[[model_terms]] <- list(model = S, direction = direction)\n  }\n\n  return(model_list)\n}\n#----------------------------------------------------------------------#\n\n#**********************************************************************#\n",
+    "created" : 1461570173072.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1027718801",
+    "id" : "3BB4A1A7",
+    "lastKnownWriteTime" : 1461578223,
+    "last_content_update" : 1461578223110,
+    "path" : "~/R/R Codes/Project_PPInterpolator/PPInterpolator/R/PPI_CE_function.R",
+    "project_path" : "R/PPI_CE_function.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

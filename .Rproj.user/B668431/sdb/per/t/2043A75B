@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#***************** projection pursuit regression ***********************#\n#******** Date: April 15th 2016  |  Author: Chen Daijun ****************#\n#******** Project: Projection Pursuit Regression in DACE ***************#\n#******** Part one: Basic Projection pursuit regression  ***************#\n#******** Version : 0.0.0 **********************************************#\n\n#************** sub-function: build non-parametric function ************#\n#' non-parametric function\n#' #'@include non_parametric_function.R\n#------------------- Method_1: Local_linear model ----------------------#\n#-----------------------------------------------------------------------#\n#'local linear regression model\n#'\n#'@export\nS <- function(projection_dir, residuals, design_matrix){\n  library(\"np\")\n  res <- residuals\n  projected <-  as.matrix(design_matrix %*% as.matrix(projection_dir))\n  projected <- as.vector(projected)\n  model.np_ll <- npreg(res ~ projected, regtype = \"ll\", bwmethod = \"cv.aic\",\n                       gradients = TRUE)\n  return(model.np_ll)\n}\n#-----------------------------------------------------------------------#\n\n#---------- Method_2: fixed basis function: sigmoid function -----------#\n#-----------------------------------------------------------------------#\n#' signomid function\n#'\n#' @export\nsigmoid <- function(z){\n  sig_moid <- 1/(1 + exp(-z))\n  return(sig_moid)\n}\n#-----------------------------------------------------------------------#\n\n#------------------- Method_3: Smoothing Spline ------------------------#\n#-----------------------------------------------------------------------#\n\n#-----------------------------------------------------------------------#\n\n\n\n\n\n\n\n",
+    "created" : 1461571365523.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2205218035",
+    "id" : "2043A75B",
+    "lastKnownWriteTime" : 1461578220,
+    "last_content_update" : 1461578220247,
+    "path" : "~/R/R Codes/Project_PPInterpolator/PPInterpolator/R/non_parametric_function.R",
+    "project_path" : "R/non_parametric_function.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
